@@ -14,7 +14,7 @@ export default {
       items: [
         { 'img': '/static/img/logo.png', 'name': 'Sets', 'url': '/sets' },
         { 'img': '/static/img/logo.png', 'name': 'Themes', 'url': '' },
-        { 'img': '/static/img/logo.png', 'name': 'Parts', 'url': '' },
+        { 'img': '/static/img/logo.png', 'name': 'search', 'url': '/search' },
         { 'img': '/static/img/logo.png', 'name': 'Mocs', 'url': '' },
         { 'img': '/static/img/logo.png', 'name': 'User', 'url': '' }
       ]
