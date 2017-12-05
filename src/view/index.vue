@@ -1,42 +1,49 @@
 <template>
-  <ul
-  v-infinite-scroll="loadMore"
-  infinite-scroll-disabled="loading"
-  infinite-scroll-distance="10">
-  <li v-for="item in results">
-  <router-link :to="{ name: 'setcontent', params: { id: item.set_num }}">{{item.name}}</router-link></li>
-</ul>
-</template>
+  <div id="index">
+    <a class="section" v-for="item in items" :href="item.url">
+      <p class="section-img"><img :src="item.img" alt=""></p>
+      <p class="section-title">{{item.name}}</p>
+    </a>    
+  </div>
+  </template>
 <script>
 export default {
   name: 'index',
   data () {
     return {
-      apiData: [],
-      results: []
-    }
-  },
-  created () {
-    this.getData()
-  },
-  methods: {
-    getData () {
-      this.$api.get('lego/sets', { 'page': 1, 'page_size': 20 }, r => {
-        this.apiData = r
-        this.results = this.apiData.results
-      })
-    },
-    loadMore () {
-      this.loading = true
-      setTimeout(() => {
-        let last = this.list[this.list.length - 1]
-        for (let i = 1; i <= 20; i++) {
-          this.list.push(last + i)
-        }
-        this.loading = false
-      }, 2500)
+      items: [
+        { 'img': '/static/img/logo.png', 'name': 'Sets', 'url': '/sets' },
+        { 'img': '/static/img/logo.png', 'name': 'Themes', 'url': '' },
+        { 'img': '/static/img/logo.png', 'name': 'Parts', 'url': '' },
+        { 'img': '/static/img/logo.png', 'name': 'Mocs', 'url': '' },
+        { 'img': '/static/img/logo.png', 'name': 'User', 'url': '' }
+      ]
     }
   }
 }
 </script>
+<style>
+#index{
+  width: 100%;
+  margin-top: 5%;
+}
+.section{
+  min-height: 80px;
+  float: left;
+  width: 25%;
+  display: block;
+  text-align: center;
+}
+.section-img{
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    height: 50%;
+}
+.section-img img{
+    width: 100%;
+    height: 100%; 
+}
+</style>
+
 

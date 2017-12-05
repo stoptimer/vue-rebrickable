@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Sets from '@/view/sets'
+import Index from '@/view/index'
 import SetContent from '@/view/setcontent'
 Vue.use(Router)
 
@@ -8,12 +9,17 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      name: 'index',
+      component: Index
+    },
+    {
       path: '/sets',
       name: 'sets',
       component: Sets
     },
     {
-      path: '/setcontent/:id',
+      path: '/setcontent/:id/:name',
       name: 'setcontent',
       component: SetContent
     }

@@ -1,9 +1,11 @@
+import { Indicator } from 'mint-ui'
 // 配置API接口地址
 var root = 'https://rebrickable.com/api/v3'
 
-var apiKey = ''
+var apiKey = '07ffc04bf3507e02ba55302c33375502'
 // 引用axios
 var axios = require('axios')
+
 // 自定义判断元素类型JS
 function toType (obj) {
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
@@ -24,6 +26,26 @@ function filterNull (o) {
   }
   return o
 }
+axios.interceptors.request.use(config => {
+// 在发送请求之前做某事，比如说 设置loading动画显示
+  Indicator.open({
+    spinnerType: 'snake'
+  })
+  return config
+}, error => {
+// 请求错误时做些事
+  return Promise.reject(error)
+})
+ // 添加响应拦截器
+axios.interceptors.response.use(response => {
+  // 对响应数据做些事，比如说把loading动画关掉
+  Indicator.close()
+  console.log('response:' + response)
+  return response
+}, error => {
+  // 请求错误时做些事
+  return Promise.reject(error)
+})
 /*
   接口处理函数
   这个函数每个项目都是不一样的，我现在调整的是适用于
@@ -46,8 +68,7 @@ function apiAxios (method, url, params, success, failure) {
     baseURL: root,
     headers: {'Authorization': 'key ' + apiKey},
     withCredentials: false
-  })
-  .then(function (res) {
+  }).then(function (res) {
     if (res.status === 200) {
       if (success) {
         success(res.data)
