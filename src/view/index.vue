@@ -12,10 +12,10 @@ export default {
   data () {
     return {
       items: [
-        { 'img': '/static/img/logo.png', 'name': 'Sets', 'url': '/sets' },
-        { 'img': '/static/img/logo.png', 'name': 'Themes', 'url': '' },
+        { 'img': '/static/img/sets.png', 'name': 'Sets', 'url': '/sets' },
+        { 'img': '/static/img/themes.png', 'name': 'Themes', 'url': '' },
         { 'img': '/static/img/logo.png', 'name': 'search', 'url': '/search' },
-        { 'img': '/static/img/logo.png', 'name': 'Mocs', 'url': '' },
+        { 'img': '/static/img/mocs.png', 'name': 'Mocs', 'url': '' },
         { 'img': '/static/img/logo.png', 'name': 'User', 'url': '' }
       ]
     }
